@@ -663,6 +663,7 @@ describe Chef::PolicyBuilder::Policyfile do
               expect(cookbook_synchronizer).to receive(:sync_cookbooks)
               expect_any_instance_of(Chef::RunContext).to receive(:load).with(policy_builder.run_list_expansion_ish)
               expect_any_instance_of(Chef::CookbookCollection).to receive(:validate!)
+              expect_any_instance_of(Chef::CookbookCollection).to receive(:install_gems)
               run_context = policy_builder.setup_run_context
               expect(run_context.node).to eq(node)
               expect(run_context.cookbook_collection.keys).to match_array(["example1", "example2"])
@@ -672,6 +673,7 @@ describe Chef::PolicyBuilder::Policyfile do
               expect(cookbook_synchronizer).to receive(:sync_cookbooks)
               expect_any_instance_of(Chef::RunContext).to receive(:load).with(policy_builder.run_list_expansion_ish)
               expect_any_instance_of(Chef::CookbookCollection).to receive(:validate!)
+              expect_any_instance_of(Chef::CookbookCollection).to receive(:install_gems)
               run_context = policy_builder.setup_run_context
               expect(Chef.run_context).to eq(run_context)
             end
